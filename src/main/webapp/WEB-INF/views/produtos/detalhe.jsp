@@ -35,7 +35,7 @@
 				<nav id="main-nav">
 					
 					<ul class="clearfix">
-						<li><a href="/cart" rel="nofollow">Carrinho(${carrinhoCompras.quantidade})</a></li>
+						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho(${carrinhoCompras.quantidade})</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 
@@ -94,11 +94,8 @@
 	        <input type="hidden" name="produtoId" value="${produto.id}" />
 	        <c:forEach items="${produto.precos}" var="preco">
 	          <li class="buy-option">
-	            <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
-	            <label  class="variant-label">
-	              ${preco.tipo}
-	            </label>
-	            <small class="compare-at-price">R$ 39,90</small>
+	            <input type="radio" name="tipoPreco" class="variant-radio" id="tipoPreco" value="${preco.tipo}"  checked="checked"  />
+	            <label  class="variant-label">${preco.tipo}</label>
 	            <p class="variant-price">${preco.valor}</p>
 	          </li>
 	        </c:forEach>           

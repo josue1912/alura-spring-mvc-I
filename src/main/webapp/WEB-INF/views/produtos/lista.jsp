@@ -12,7 +12,10 @@
 	<h1>Lista de produtos</h1>
 	<div>${message}</div>
 	<div>
-		<a href="${s:mvcUrl('PC#form').build()}">Cadastrar</a>
+		<ul>
+			<li><a href="${s:mvcUrl('PC#form').build()}">Cadastrar</a></li>
+			<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho(${carrinhoCompras.quantidade})</a></li>
+		</ul>
 	</div>
 	<table>
 		<tr>

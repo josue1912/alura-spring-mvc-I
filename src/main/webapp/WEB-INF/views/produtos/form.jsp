@@ -10,7 +10,7 @@
 </head>
 <body>
                          
-	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" commandName="produto" enctype="multipart/form-data">
+	<form:form action="${s:mvcUrl('ProdutoGravar').build()}" method="post" commandName="produto" enctype="multipart/form-data">
 		<div>
 			<label>Título</label>
 			<form:input path="titulo" />

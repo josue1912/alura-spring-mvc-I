@@ -25,9 +25,10 @@ public class CarrinhoComprasController {
 	@Autowired
 	private CarrinhoCompras carrinho;
 
-	@RequestMapping("/add")
+	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/carrinho");
+		System.out.println("1- produtoID:"+produtoId+" tipoPreco:"+tipoPreco);
 		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
 		carrinho.add(carrinhoItem);
 		return modelAndView;
@@ -42,7 +43,6 @@ public class CarrinhoComprasController {
 	@RequestMapping(method=RequestMethod.GET)
 	private ModelAndView itens(){
 		ModelAndView modelAndView = new ModelAndView("/carrinho/itens");
-		
 		return modelAndView;
 	}
 	

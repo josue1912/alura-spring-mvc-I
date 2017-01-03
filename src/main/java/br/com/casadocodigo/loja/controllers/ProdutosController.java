@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -46,7 +47,8 @@ public class ProdutosController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, name="ProdutoGravar")
+	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		
 		if (result.hasErrors()) {
@@ -69,7 +71,7 @@ public class ProdutosController {
 		modelAndView.addObject("produtos", produtos);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id") Integer id){
 		ModelAndView modelAndView = new ModelAndView("produtos/detalhe");

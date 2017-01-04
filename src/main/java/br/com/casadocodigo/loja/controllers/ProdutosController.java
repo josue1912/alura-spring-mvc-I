@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -66,6 +67,7 @@ public class ProdutosController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@Cacheable(value="listaDeProdutos")
 	public ModelAndView listar() {
 		List<Produto> produtos = dao.listar();
 		ModelAndView modelAndView = new ModelAndView("produtos/lista");

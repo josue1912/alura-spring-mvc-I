@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>lista</title>
+<title>Cadastro de produtos</title>
 <c:url value="/resources/css/" var="cssPath" />
 <link rel="stylesheet" href="${cssPath}bootstrap.min.css" />
 <link rel="stylesheet" href="${cssPath}bootstrap-theme.min.css" />
-
+<style type="text/css">
+        body{
+            padding-bottom: 60px;
+        }
+    </style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -30,31 +34,46 @@
 	        <li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
 	        <li><a href="${s:mvcUrl('CCC#itens').build()}">Carrinho(${carrinhoCompras.quantidade})</a></li>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><security:authentication property="principal.username"/></a></li>
-			<li><a href="${s:mvcUrl('LC#logout').build() }">Sair</a></li>
-		  </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div>
 	</nav>
 
 	<div class="container">
-		<h1>Lista de produtos</h1>
-		<div>${message}</div>
-		<table class="table table-bordered table-striped table-hover">
-			<tr>
-				<th>Título</th>
-				<th>Descrição</th>
-				<th>Páginas</th>
-			</tr>
-			<c:forEach items="${produtos}" var="produto">
-				<tr>
-					<td><a href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build()}">${produto.titulo}</a></td>
-					<td>${produto.descricao}</td>
-					<td>${produto.paginas}</td>
-				</tr>
-			</c:forEach>			
-		</table>
+		<h1>Cadastro de Produto</h1>
+		<form:form action="${s:mvcUrl('ProdutoGravar').build()}" method="post" commandName="produto" enctype="multipart/form-data">
+			<div class="form-group">
+				<label>Título</label>
+				<form:input path="titulo" cssClass="form-control"/>
+				<form:errors path="titulo" />
+			</div>
+			<div class="form-group">
+				<label>Descrição</label>
+				<form:textarea path="descricao" cssClass="form-control"/>
+				<form:errors path="descricao" />
+			</div>
+			<div class="form-group">
+				<label>Páginas</label>
+				<form:input path="paginas" cssClass="form-control" />
+				<form:errors path="paginas" />
+			</div>
+			<div class="form-group">
+				<label>Data lançamento</label>
+				<form:input path="dataLancamento" cssClass="form-control" />
+				<form:errors path="dataLancamento" />
+			</div>
+			<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
+				<div class="form-group">
+					<label>${tipoPreco}</label>
+					<form:input path="precos[${status.index}].valor" cssClass="form-control" />
+					<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
+				</div>
+			</c:forEach>
+			<div class="form-group">
+				<label>Sumário</label>
+				<input type="file" name="sumario" class="form-control"/>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form:form>
 	</div>
 </body>
 </html>

@@ -20,12 +20,12 @@ html {
 #submit-product-newsletter{
   background-color: #000;
 }
-#main-nav ul li:hover {
-  border-bottom: 7px solid #EF7000;
-}
 #main-nav ul li a:link,
-#main-nav ul li a:visited {
+#main-nav ul li a:visited{
   color: #F5F5F5;
+}
+#main-nav ul li a:hover {
+  color:#EF7000;
 }
 
 #main-nav ul li a:hover,

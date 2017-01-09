@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Produto implements Serializable{
 	@DateTimeFormat
 	private Calendar dataLancamento;
 	@ElementCollection
-	private List<Preco> precos;
+	private List<Preco> precos = new ArrayList<>();
 	private String sumarioPath;
 
 	public int getId() {

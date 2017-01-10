@@ -49,7 +49,7 @@ public class ProdutosControllerTest {
 	}
 	
 	@Test
-	public void somenteAdminDeveAcessarProdutosForm() throws Exception{
+	public void roleDiferenteAdminNaoDeveAcessarProdutosForm() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders.get("/produtos/form")
 				.with(SecurityMockMvcRequestPostProcessors
 						.user("user@casadocodigo.com.br")
@@ -57,9 +57,16 @@ public class ProdutosControllerTest {
 						.roles("USUARIO")))
 				.andExpect(MockMvcResultMatchers.status().is(403));
 	}
+	
+	@Test
+	public void roleIgualAdminDeveAcessarProdutosForm() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.get("/produtos/form")
+				.with(SecurityMockMvcRequestPostProcessors
+						.user("user@casadocodigo.com.br")
+						.password("123456")
+						.roles("ADMIN")))
+				.andExpect(MockMvcResultMatchers.status().is(200));
+	}
 }
-
-
-
 
 

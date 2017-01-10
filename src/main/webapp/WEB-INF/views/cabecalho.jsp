@@ -2,8 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<c:set value="<security:authentication property='principal.username'/>" var="usuarioLogado" />
-
+<c:set value="<security:authentication property='principal.username' />" var="usuarioLogado" />
 <header id="layout-header">
 	<div class="clearfix container">
 		<a href="${contextPath }" id="logo"></a>

@@ -52,7 +52,7 @@
 				    <tr>
 				        <td colspan="5">
 					        <form:form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
-					            <input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+					            <button type="submit" class="btn btn-primary">Finalizar compra</button>
 					        </form:form>
 				        </td>
 				        <td class="numeric-cell">${carrinhoCompras.total}</td>
